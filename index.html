@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+  <title>Rock, Paper, Scissors!</title>
+</head>
+<body>
+  <script>
+  var choices = ["Rock", "Paper", "Scissors"];
+  var playerScore = 0;
+  var compScore = 0;
+
+  function computerPlay(){
+    computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    compChoice = computerChoice.toString();
+    return compChoice;
+  }
+  function playerPlay(){
+    answer = prompt("Rock, Paper or Scissors?");
+    lowercase = (answer.toLowerCase()).split('');
+    firstLetter = (lowercase[0].toString()).toUpperCase();
+    lowercase.shift();
+    lowercase.unshift(firstLetter)
+    playerChoice = lowercase.join('');
+    return playerChoice;
+  }
+  function gameTime(playerChoice, compChoice){
+
+
+    if(playerChoice === compChoice){
+      console.log("Draw!");
+    } else if(playerChoice === "Rock" && compChoice === "Scissors"){
+      playerScore ++;
+    } else if(playerChoice === "Scissors" && compChoice === "Paper"){
+      playerScore ++;
+    } else if(playerChoice === "Paper" && compChoice === "Rock"){
+      playerScore ++;
+    } else if(compChoice === "Rock" && playerChoice === "Scissors"){
+      compScore ++;
+    } else if(compChoice === "Scissors" && playerChoice === "Paper"){
+      compScore ++;
+    } else if(compChoice === "Paper" && playerChoice === "Rock"){
+      compScore ++;
+    } else{
+      console.log("You have to chose rock, paper or scissors!");
+    }
+  }
+
+  function playGame(){
+    while (playerScore < 5 && compScore < 5){
+      gameTime(playerPlay(), computerPlay());
+      console.log("Player Score: " + playerScore);
+      console.log("Computer Score: " + compScore);
+    } if (playerScore === 5){
+      console.log("Player wins!");
+    } if (compScore === 5){
+      console.log("Computer wins!");
+    }
+  }
+
+playGame();
+
+
+  </script>
+</body>
